@@ -14,5 +14,6 @@ Functional	requirements
   2.4 The app shall allow the users to logout of the app anytime the user chooses to using a button.
 3.  The Calender app shall have a notification system
   3.1 The user shall be able to enable/disable notification system
+  3.2 The user shall be able to get notifications 30 mins before the scheduled event is about to occur.
 
 Use	Case	Diagram
