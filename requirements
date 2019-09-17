@@ -6,8 +6,8 @@ Functional	requirements
   1.2 The system shall allow users to view it in month-form
   1.3 The system shall allow users to add events(Ex: notifications, birthdays, special days, etc.) to individual days 
   1.4 The system shall allow users to reminders to individual days
-  1.5
-  1.6
+  1.5 The system shall allow user to add more than one events to a date
+  1.6 The system shall allow user to set notification time(hour:minute)
   1.7
 
 
