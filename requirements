@@ -9,6 +9,11 @@ Functional	requirements
   1.5 The system shall allow user to add more than one events to a date
   1.6 The system shall allow user to set notification time(hour:minute)
   1.7
+ 2. The Calender app shall have a login system
+  2.1 The app shall allow the users to login into the system if they already have an account.
+  2.2 The app shall allow the users to create a new account if they need one.
+  2.3 The app shall allow the users to change or retrive their password or username if they forget it.
+  2.4 The app shall allow the users to logout of the app anytime the user chooses to using a button.
 
 
 Use	Case	Diagram
