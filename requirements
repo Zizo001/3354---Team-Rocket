@@ -16,5 +16,9 @@ Functional	requirements
   3.1 The user shall be able to enable/disable notification system
   3.2 The user shall be able to get notifications 30 mins before the scheduled event is about to occur.
   3.3 The user shall be able to edit the notification that already exist (time, date).
+4. The Calendar app shall have a data storage system
+	4.1 The app shall store and retrieve all information saved on the calendar.
+	4.2 The app shall be able to able to update real time using the database.
+
 
 Use	Case	Diagram
