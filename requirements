@@ -18,7 +18,7 @@ Functional	requirements
   3.3 The user shall be able to edit the notification that already exist (time, date).
 4. The Calendar app shall have a data storage system
 	4.1 The app shall store and retrieve all information saved on the calendar.
-	4.2 The app shall be able to able to update real time using the database.
+	4.2 The app shall be able to update real time using the database.
 
 
 Use	Case	Diagram
