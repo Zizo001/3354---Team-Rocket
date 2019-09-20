@@ -19,6 +19,7 @@ Functional	requirements
 4. The Calendar app shall have a data storage system
 	4.1 The app shall store and retrieve all information saved on the calendar.
 	4.2 The app shall be able to update real time using the database.
+	4.3 The app will save data to the phone itself.
 Non-Functional 
 1.Customizability
  1.1 The app shall have a built in dark mode
