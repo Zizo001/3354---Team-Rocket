@@ -12,15 +12,10 @@ Functional	requirements
   1.4 The system shall allow users to add more than one event to a date
   1.5 The system shall allow users to change the present date
   1.6 The system shall allow the uer to have an overview of the year
- 2. The Calender app shall have a login system
-  2.1 The app shall allow the users to login into the system if they already have an account.
-  2.2 The app shall allow the users to create a new account if they need one.
-  2.3 The app shall allow the users to change or retrive their password or username if they forget it.
-  2.4 The app shall allow the users to logout of the app anytime the user chooses to using a button.
-3.  The Calender app shall have a checklist system
-  3.1 The user shall be able to enable/disable checklist system
-  3.2 The user shall be able to get checklist 30 mins before the scheduled event is about to occur.
-  3.3 The user shall be able to edit the checklist that already exist (time, date).
+3.  The Calender app shall have a notification system
+  3.1 The user shall be able to enable/disable notification system
+  3.2 The user shall be able to get notification 30 mins before the scheduled event is about to occur.
+  3.3 The user shall be able to edit the notification that already exist (time, date).
 4. The Calendar app shall have a data storage system
 	4.1 The app shall store and retrieve all information saved on the calendar.
 	4.2 The app shall be able to update real time using the database.
