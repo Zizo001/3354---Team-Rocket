@@ -22,6 +22,8 @@ Functional	requirements
 Non-Functional 
 1.Customizability
  1.1 The app shall have a built in dark mode
+ 1.2 The app shall have feature that allows different colors for each event. 
+ 1.3 The app shall allow user to set certain time for the reminder. 
 
 
 Use	Case	Diagram
