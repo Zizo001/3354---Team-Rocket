@@ -1,37 +1,44 @@
 package com.example.calenderapp;
-import android.content.ContentValues;
+import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class dayView extends AppCompatActivity implements View.OnClickListener {
 
     TextView dateBox;
-
+    myDBAdapter helper;
     public static String selectedDate;
     private String date;
-    public static mySQLiteDBHandler dbHandler;
-    public static EditText editText;
-    public static SQLiteDatabase sqLiteDatabase;
-    Button deleteButton;
-    public static int num = 0;
+    LinearLayout container;
+    public static boolean exists;
+    public static int boxid;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.day_view);
+
+        container = (LinearLayout)findViewById(R.id.llone);
 
         FloatingActionButton addButton = findViewById(R.id.addButton);
         addButton.setSize(FloatingActionButton.SIZE_AUTO);
@@ -47,6 +54,7 @@ public class dayView extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
+        helper = new myDBAdapter(this);
 
         date = MainActivity.getDate();
         selectedDate = MainActivity.getSelectedDate();
@@ -54,77 +62,68 @@ public class dayView extends AppCompatActivity implements View.OnClickListener {
         dateBox = (TextView) findViewById(R.id.textView);
         dateBox.setText(date);
 
-        editText = (EditText) findViewById(R.id.editText1);
+        List<String> event = helper.getData(selectedDate);
+        List<Integer> ids = helper.getIds();
 
-        editText.setOnClickListener(new View.OnClickListener() {
+       for(String e : event){
+            int i = ids.get(event.indexOf(e));
+            addLine(e, i);
+        }
+
+    }
+
+    public void addLine(final String e, final int uid){
+        LayoutInflater layoutInflater = (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View addView = layoutInflater.inflate(R.layout.row, null);
+        final AutoCompleteTextView tv = (AutoCompleteTextView)addView.findViewById(R.id.textout);
+        tv.setText(e);
+        tv.setFocusable(false);
+        tv.setCursorVisible(false);
+        tv.setKeyListener(null);
+        tv.setId(uid);
+        final Button removeButton = (Button)addView.findViewById(R.id.remove);
+        removeButton.setId(uid);
+        exists = false;
+
+        final View.OnClickListener thisListener1 = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(dayView.this, eventView.class);
-                startActivity(i);
+                setBoxId(tv.getId());
+                setExists(true);
+               Intent i = new Intent(dayView.this, eventView.class);
+               startActivity(i);
             }
-        });
+        };
 
-        try{
-            dbHandler = new mySQLiteDBHandler(this, "CalendarDatabase", null, 1);
-            sqLiteDatabase = dbHandler.getWritableDatabase();
-            sqLiteDatabase.execSQL("CREATE TABLE EventCalendar(Date TEXT,Event TEXT)");
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
+        final View.OnClickListener thisListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int id = removeButton.getId();
+                helper.delete(id);
+                ((LinearLayout)addView.getParent()).removeView(addView);
+            }
+        };
 
-        ReadDatabase();
+        removeButton.setOnClickListener(thisListener);
+        tv.setOnClickListener(thisListener1);
+        container.addView(addView);
     }
 
-    public static void InsertDatabase(View view){
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("Date", selectedDate);
-            contentValues.put("Event", "-" + MainActivity.event);
-            sqLiteDatabase.insert("EventCalendar", null, contentValues);
-
-            dayView dv = new dayView();
-            dv.ReadDatabase();
+    public void setExists(boolean e){
+        exists = e;
     }
 
-    public static void updateDatabase(){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("Date", selectedDate);
-        contentValues.put("Event","-" + MainActivity.event);
-        sqLiteDatabase.update("EventCalendar", contentValues, "Date =" + selectedDate, null);
+    public static boolean getExists(){
+        return exists;
     }
 
-    public void DeleteDatabase(View view){
-        sqLiteDatabase.delete("EventCalendar", "Date =" + selectedDate ,null);
-        ReadDatabase();
+    public void setBoxId(int i){
+        boxid = i;
     }
 
-    public static String textEvent;
-
-    public void ReadDatabase(){
-        String query = "Select Event from EventCalendar where Date =" + selectedDate;
-        try{
-            Cursor cursor = sqLiteDatabase.rawQuery(query, null);
-            cursor.moveToFirst();
-            editText.setText(cursor.getString(0));
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            editText.setText("");
-        }
+    public static int getBoxId(){
+        return boxid;
     }
-
-    public void addLine(){
-        LinearLayout ll = (LinearLayout) findViewById(R.id.llOne);
-        EditText et = new EditText(this);
-        if (textEvent.equals("")) {
-            ll.removeView(et);
-        }else {
-            et.setText(textEvent);
-            ll.addView(et);
-        }
-
-    }
-
 
     @Override
     public void onClick(View view) {
