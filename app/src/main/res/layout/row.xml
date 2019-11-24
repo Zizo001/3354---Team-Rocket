@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/remove"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:fontFamily="@font/chewy"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/buttonshadow"
+        android:layout_alignParentRight="true"
+        android:text="Done"/>
+    <AutoCompleteTextView
+        android:id="@+id/textout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/chewy"
+        android:textAlignment="textStart"
+        android:textSize="28sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="100dp"
+        android:background="@drawable/roundcorner"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/remove"/>
+</RelativeLayout>

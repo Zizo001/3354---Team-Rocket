@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="bottom"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:layout_gravity="center"
+        android:background="#03A9F4"
+        android:backgroundTint="#DF0000"
+        android:fontFamily="@font/chewy"
+        android:gravity="center_horizontal|center_vertical"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#141212"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="455dp"
+        android:background="#F44336"
+        android:backgroundTint="#FFFFFF">
+
+        <LinearLayout
+            android:id="@+id/llone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/layOut3"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:background="#EB5757"
+        android:backgroundTint="#ECEAEA"
+        android:gravity="bottom|center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="72dp">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="100dp"
+                android:clickable="true"
+                android:focusable="auto"
+                android:foregroundTint="#F5F5F5"
+                android:onClick="onClick"
+                app:backgroundTint="#EE0A19"
+                app:rippleColor="#3454C7"
+                app:srcCompat="@android:drawable/ic_menu_add" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/homeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="100dp"
+                android:clickable="true"
+                app:backgroundTint="#3FB4EE"
+                app:srcCompat="@android:drawable/ic_menu_today" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

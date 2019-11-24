@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    android:background="#03A9F4"
+    android:backgroundTint="#D33229"
+    android:gravity="bottom"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/eventText"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="#96664D"
+        android:backgroundTint="#D5CCCC"
+        android:ems="10"
+        android:fontFamily="@font/boogaloo"
+        android:hint="Event Description"
+        android:inputType="textEmailAddress"
+        android:shadowColor="#639EEE"
+        android:singleLine="false"
+        android:textAlignment="center"
+        android:textColorHint="#6B6161"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="251dp"
+        android:layout_height="63dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="75dp"
+        android:backgroundTint="#BDE27E"
+        android:fontFamily="@font/chewy"
+        android:onClick="showTimePickerDialog"
+        android:text="Time?"
+        android:textColor="#1D1C1C"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="232dp"
+        android:background="#FFEB3B"
+        android:backgroundTint="#FFFFFF"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="76dp">
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="169dp"
+                android:layout_height="63dp"
+                android:layout_marginLeft="20dp"
+                android:backgroundTint="#03A9F4"
+                android:drawableLeft="@android:drawable/ic_menu_agenda"
+                android:fontFamily="@font/boogaloo"
+                android:gravity="bottom|left"
+                android:text="Go Back"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/addBut"
+                android:layout_width="178dp"
+                android:layout_height="62dp"
+                android:layout_gravity="bottom|right"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/button4"
+                android:backgroundTint="#F44336"
+                android:drawableLeft="@android:drawable/ic_menu_add"
+                android:fontFamily="@font/boogaloo"
+                android:gravity="bottom|right"
+                android:text="Add Event"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
