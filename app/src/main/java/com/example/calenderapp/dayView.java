@@ -1,3 +1,9 @@
+/**
+ * This class is used to make the dayView
+ * dayView shows the user the events in a day
+ * @author: Akshar Patel
+ * @documentor: Ramin Nourbakhsh
+ */
 package com.example.calenderapp;
 import android.app.ActionBar;
 import android.content.Context;
@@ -26,7 +32,7 @@ import java.util.List;
 public class dayView extends AppCompatActivity implements View.OnClickListener {
 
     TextView dateBox;
-    myDBAdapter helper;
+    myDBAdapter helper; //this is a data base helper which allows the user to store events
     public static String selectedDate;
     private String date;
     LinearLayout container;
@@ -72,6 +78,11 @@ public class dayView extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    /**
+     * addLine represents events in the day as a text format
+     * @param e event description
+     * @param uid Id given to event by database
+     */
     public void addLine(final String e, final int uid){
         LayoutInflater layoutInflater = (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View addView = layoutInflater.inflate(R.layout.row, null);
@@ -109,18 +120,22 @@ public class dayView extends AppCompatActivity implements View.OnClickListener {
         container.addView(addView);
     }
 
+    //setter for exists
     public void setExists(boolean e){
         exists = e;
     }
 
+    //getter for exists
     public static boolean getExists(){
         return exists;
     }
 
+    //setter for boxId
     public void setBoxId(int i){
         boxid = i;
     }
 
+    //getter for boxId
     public static int getBoxId(){
         return boxid;
     }
