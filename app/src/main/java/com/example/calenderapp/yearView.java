@@ -11,12 +11,32 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.content.Intent;
 
-public class yearView {
+import androidx.appcompat.app.AppCompatActivity;
+
+import static com.example.calenderapp.MainActivity.v;
+
+public class yearView extends AppCompatActivity {
     public String monthName;
     public int monthValue;
-    Button buttonJanuary, buttonFebruary, buttonMarch, buttonApril, buttonJune, buttonJuly
-            , buttonAugust, buttonSeptember, buttonOctober, buttonNovember, buttonDecember;
+    public static Button buttonJanuary;
+    //, buttonFebruary, buttonMarch, buttonApril, buttonJune, buttonJuly
+    //, buttonAugust, buttonSeptember, buttonOctober, buttonNovember, buttonDecember;
 
 
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
+
+        buttonJanuary = (Button) findViewById(R.id.buttonJanuary);
+    buttonJanuary.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(yearView.this, MainActivity.class);
+            startActivity(intent);
+        }
+    });
+
+
+    }
 }
