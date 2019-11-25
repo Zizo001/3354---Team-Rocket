@@ -1,7 +1,6 @@
 CalenderView
 	DaysView
 		Reminders/Events
-	MonthView
 	YearView
 	SettingsView
 	
