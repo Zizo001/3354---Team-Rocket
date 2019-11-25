@@ -1,3 +1,9 @@
+/**
+ * This is the Database helper class. This class uses SQLlite
+ * This class is used to manipulate the events
+ * @Author: Akshar Patel
+ * @Documentor: Ramin Nourbakhsh
+ */
 package com.example.calenderapp;
 
 import android.app.TimePickerDialog;
@@ -22,13 +28,17 @@ import java.util.List;
 
 public class myDBAdapter extends AppCompatActivity {
     myDbHelper myhelper;
-    int uid;
-    List<Integer> ids = new ArrayList<>();
+    int uid; //integer id given to the event
+    List<Integer> ids = new ArrayList<>();//ArrayList to hold the event ids
 
     public myDBAdapter(Context context) {
         myhelper = new myDbHelper(context);
     }
 
+    /**
+     * this method inserts data into the database
+     * @return returns the id of the new event
+     */
     public long insertData() {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -41,6 +51,12 @@ public class myDBAdapter extends AppCompatActivity {
         return id;
     }
 
+    /**
+     * this method checks if two events are schedule for the same time on the same day
+     * @param t time as a string
+     * @param a am or pm
+     * @return true if two events are scheduled for the same time else return false
+     */
     public boolean checkTimeOverlap(String t, String a){
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] columns = {myDbHelper.UID, myDbHelper.TIME, myDbHelper.AMPM, myDbHelper.DATE, myDbHelper.EVENT};
@@ -58,6 +74,11 @@ public class myDBAdapter extends AppCompatActivity {
         return false;
     }
 
+    /**
+     *
+     * @param date
+     * @return
+     */
     public List<String> getData(String date) {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] columns = {myDbHelper.UID, myDbHelper.TIME, myDbHelper.DATE, myDbHelper.AMPM, myDbHelper.EVENT};
@@ -83,6 +104,13 @@ public class myDBAdapter extends AppCompatActivity {
         return ids;
     }
 
+    /**
+     * update an event
+     * @param id id given to the event by the database
+     * @param e event
+     * @param t time
+     * @param a am or pm
+     */
     public void updateEvent(int id, String e, String t, String a){
         SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -94,6 +122,10 @@ public class myDBAdapter extends AppCompatActivity {
         getData(MainActivity.getSelectedDate());
     }
 
+    /**
+     * deletes an event based on it's id
+     * @param id id given to event by database
+     */
     public void delete(int id){
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] whereArgs = {String.valueOf(id)};
