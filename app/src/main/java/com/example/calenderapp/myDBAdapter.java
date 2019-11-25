@@ -75,9 +75,9 @@ public class myDBAdapter extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param date
-     * @return
+     *Reads the data in the database and returns it as a list of strings
+     * @param date date of the event in a string format
+     * @return the list of strings
      */
     public List<String> getData(String date) {
         SQLiteDatabase db = myhelper.getWritableDatabase();
