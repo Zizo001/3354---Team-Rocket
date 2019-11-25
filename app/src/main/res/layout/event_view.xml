@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="bottom"
     android:background="#03A9F4"
-    android:backgroundTint="#D33229"
+    android:backgroundTint="#DF0000"
     android:gravity="bottom"
     android:orientation="vertical">
 
@@ -13,10 +13,12 @@
         android:id="@+id/eventText"
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:background="#96664D"
-        android:backgroundTint="#D5CCCC"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#2196F3"
+        android:backgroundTint="#FFFFFF"
         android:ems="10"
-        android:fontFamily="@font/boogaloo"
+        android:fontFamily="@font/chewy"
         android:hint="Event Description"
         android:inputType="textEmailAddress"
         android:shadowColor="#639EEE"
@@ -32,7 +34,7 @@
         android:layout_marginLeft="75dp"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="75dp"
-        android:backgroundTint="#BDE27E"
+        android:backgroundTint="#B7E953"
         android:fontFamily="@font/chewy"
         android:onClick="showTimePickerDialog"
         android:text="Time?"
@@ -41,15 +43,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="232dp"
+        android:layout_height="169dp"
         android:background="#FFEB3B"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="#6D6969"
         android:gravity="bottom"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="76dp">
+            android:layout_height="113dp">
 
             <Button
                 android:id="@+id/button4"
@@ -59,7 +61,8 @@
                 android:backgroundTint="#03A9F4"
                 android:drawableLeft="@android:drawable/ic_menu_agenda"
                 android:fontFamily="@font/boogaloo"
-                android:gravity="bottom|left"
+                android:gravity="center"
+                android:shadowColor="#FFFFFF"
                 android:text="Go Back"
                 android:textAlignment="center"
                 android:textSize="24sp" />
@@ -74,7 +77,7 @@
                 android:backgroundTint="#F44336"
                 android:drawableLeft="@android:drawable/ic_menu_add"
                 android:fontFamily="@font/boogaloo"
-                android:gravity="bottom|right"
+                android:gravity="center"
                 android:text="Add Event"
                 android:textAlignment="center"
                 android:textSize="24sp" />
