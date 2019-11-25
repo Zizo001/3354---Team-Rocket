@@ -16,8 +16,7 @@
         </item>
     </style>
 
-    <!-- Base application theme. -->
-    <!-- Light/Day Mode scheme. -->
+    <!-- Dark/Night Mode scheme. -->
     <style name="DarkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#212121</item>
