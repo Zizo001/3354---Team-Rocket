@@ -63,7 +63,7 @@ public class setting extends AppCompatActivity {
         finish();
     }
 
-    /* This method is use to choose text style */
+    /* This method activate radio button to choose text style */
     public void rbclick(View v)
     {
         int radiobuttonid = rg.getCheckedRadioButtonId();
