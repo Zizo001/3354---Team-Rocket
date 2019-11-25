@@ -17,25 +17,27 @@ public class setting extends AppCompatActivity {
     private Switch myswitch;
     RadioGroup rg;
     RadioButton rb;
-
+    SharedPref sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        sharedPref = new SharedPref(this);
         // Set the theme
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+        if(sharedPref.loadNightModeState() == true)
         {
             setTheme(R.style.DarkTheme);
         }
         else setTheme(R.style.AppTheme);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settingView);
+        setContentView(R.layout.setting_view);
 
         // Set the view
         rg = (RadioGroup)findViewById(R.id.rgroup);
 
         // Activate switch
         myswitch = (Switch)findViewById(R.id.myswitch);
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+        if(sharedPref.loadNightModeState() == true)
         {
             myswitch.setChecked(true);
         }
@@ -44,17 +46,19 @@ public class setting extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked)
                 {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    sharedPref.setNightModeState(true);
                     restartApp();
                 }
                 else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    sharedPref.setNightModeState(false);
                     restartApp();
                 }
             }
         });
 
     }
+
+
 
     /* This method restart the app after changing theme */
     public void restartApp(){
