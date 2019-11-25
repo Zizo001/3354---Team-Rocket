@@ -1,4 +1,5 @@
 package com.example.calenderapp;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import java.util.Calendar;
 
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
     public static String time;
+    public static String ampm;
     public static boolean selectedTime;
 
     @Override
@@ -23,7 +25,7 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         int minute = c.get(Calendar.MINUTE);
 
         // Create a new instance of TimePickerDialog and return it
-        return new TimePickerDialog(getActivity(), this, hour, minute, false);
+        return new TimePickerDialog(getActivity(), AlertDialog.THEME_HOLO_DARK, this, hour, minute, false);
     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -33,14 +35,14 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         String timeSet = "";
         if (hour > 12) {
             hour -= 12;
-            timeSet = "PM";
+            timeSet = "pm";
         } else if (hour == 0) {
             hour += 12;
-            timeSet = "AM";
+            timeSet = "am";
         } else if (hour == 12){
-            timeSet = "PM";
+            timeSet = "pm";
         }else{
-            timeSet = "AM";
+            timeSet = "am";
         }
 
         String min = "";
@@ -49,16 +51,20 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         else
             min = String.valueOf(minutes);
 
-        // Append in a StringBuilder
          time = new StringBuilder().append(hour).append(':')
-                .append(min ).append(" ").append(timeSet).toString();
+                .append(min ).append(" ").toString();
+         ampm = new StringBuilder().append(timeSet).toString();
+
+         eventView.timeButton.setText(time +" " + ampm);
     }
 
     public static String getTime(){
         return time;
     }
+    public static String getAmPm(){return ampm;}
 
     public static boolean isTimeSelected(){
         return selectedTime;
     }
 }
+
