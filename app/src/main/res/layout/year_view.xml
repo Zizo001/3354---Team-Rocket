@@ -5,9 +5,9 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/yearText"
         android:layout_width="match_parent"
-        android:layout_height="133dp"
+        android:layout_height="122dp"
         android:background="#EB2020"
         android:fontFamily="@font/boogaloo"
         android:gravity="center"
@@ -19,13 +19,13 @@
 
     <androidx.gridlayout.widget.GridLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="590dp">
 
         <Button
             android:id="@+id/buttonDecember"
-            android:layout_width="126dp"
-            android:layout_height="142dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="10dp"
             android:background="#3FB4EE"
             android:fontFamily="@font/boogaloo"
             android:text="December"
@@ -35,9 +35,9 @@
 
         <Button
             android:id="@+id/buttonNovember"
-            android:layout_width="140dp"
-            android:layout_height="142dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="10dp"
             android:background="#3FB4EE"
             android:fontFamily="@font/boogaloo"
             android:text="November"
@@ -47,8 +47,9 @@
 
         <Button
             android:id="@+id/buttonOctober"
-            android:layout_width="139dp"
-            android:layout_height="142dp"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="15dp"
             android:background="#3FB4EE"
             android:fontFamily="@font/boogaloo"
             android:text="October"
@@ -58,9 +59,9 @@
 
         <Button
             android:id="@+id/buttonSeptember"
-            android:layout_width="121dp"
-            android:layout_height="142dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="10dp"
             android:background="#3FB4EE"
             android:fontFamily="@font/boogaloo"
             android:text="September"
@@ -70,8 +71,9 @@
 
         <Button
             android:id="@+id/buttonJuly"
-            android:layout_width="139dp"
-            android:layout_height="142dp"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="15dp"
             android:background="#3FB4EE"
             android:fontFamily="@font/boogaloo"
             android:text="July"
@@ -81,9 +83,9 @@
 
         <Button
             android:id="@+id/buttonAugust"
-            android:layout_width="140dp"
-            android:layout_height="142dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginBottom="5dp"
             android:background="#3FB4EE"
             android:fontFamily="@font/boogaloo"
@@ -94,9 +96,10 @@
 
         <Button
             android:id="@+id/buttonMay"
-            android:layout_width="141dp"
-            android:layout_height="142dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
             android:background="#3FB4EE"
             android:fontFamily="@font/boogaloo"
             android:text="May"
@@ -106,9 +109,9 @@
 
         <Button
             android:id="@+id/buttonJune"
-            android:layout_width="128dp"
-            android:layout_height="142dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="10dp"
             android:layout_marginBottom="5dp"
             android:background="#3FB4EE"
             android:fontFamily="@font/boogaloo"
@@ -119,8 +122,10 @@
 
         <Button
             android:id="@+id/buttonApril"
-            android:layout_width="139dp"
-            android:layout_height="142dp"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="5dp"
             android:background="#3FB4EE"
             android:fontFamily="@font/boogaloo"
             android:text="April"
@@ -130,9 +135,11 @@
 
         <Button
             android:id="@+id/buttonJanuary"
-            android:layout_width="139dp"
-            android:layout_height="142dp"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
             android:background="#3FB4EE"
             android:fontFamily="@font/boogaloo"
             android:text="January"
@@ -142,9 +149,9 @@
 
         <Button
             android:id="@+id/buttonFebruary"
-            android:layout_width="141dp"
-            android:layout_height="142dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:background="#3FB4EE"
             android:fontFamily="@font/boogaloo"
@@ -156,10 +163,10 @@
         <Button
             android:id="@+id/buttonMarch"
             android:layout_width="120dp"
-            android:layout_height="142dp"
-            android:layout_marginLeft="5dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="10dp"
             android:background="#3FB4EE"
             android:fontFamily="@font/boogaloo"
             android:text="March"
