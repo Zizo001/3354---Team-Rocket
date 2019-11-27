@@ -24,10 +24,9 @@ public class yearView extends AppCompatActivity {
     public String monthName;
     public int monthValue;
     public static Button buttonJanuary;
-    //, buttonFebruary, buttonMarch, buttonApril, buttonJune, buttonJuly
-    //, buttonAugust, buttonSeptember, buttonOctober, buttonNovember, buttonDecember;
 
 
+    //method to incorporate button functionality 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.year_view);
@@ -35,9 +34,10 @@ public class yearView extends AppCompatActivity {
 
         int year = c.get(Calendar.YEAR);
         final TextView yearText = (TextView)findViewById(R.id.yearText);
-        yearText.setText(Integer.toString(year));
+        yearText.setText(Integer.toString(year));                       
 
-
+     //each month has a corresponding button with values from 0-11 assigned to the respective activity
+     //and sets monthSelected to true   
         buttonJanuary = (Button) findViewById(R.id.buttonJanuary);
         buttonJanuary.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,7 +154,7 @@ public class yearView extends AppCompatActivity {
 
 
     }
-
+    //intent that transfers from yearView to the mainActivity aka month view
     private void changeView(){
         Intent intent = new Intent(yearView.this, MainActivity.class);
         startActivity(intent);
