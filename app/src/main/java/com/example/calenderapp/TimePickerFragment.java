@@ -1,7 +1,9 @@
 package com.example.calenderapp;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.widget.Button;
@@ -15,7 +17,8 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
     public static String time;
     public static String ampm;
     public static boolean selectedTime;
-
+    public static int min;
+    public static int hour;
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current time as the default values for the picker
@@ -27,9 +30,13 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         // Create a new instance of TimePickerDialog and return it
         return new TimePickerDialog(getActivity(), AlertDialog.THEME_HOLO_DARK, this, hour, minute, false);
     }
-
+        
+        //method check for time set and sets am and pm 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        hour = hourOfDay;
+        min = minute;
         selectedTime = true;
+        
        int hour = hourOfDay;
         int minutes = minute;
         String timeSet = "";
@@ -51,20 +58,24 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         else
             min = String.valueOf(minutes);
 
+                //creating the time string 
          time = new StringBuilder().append(hour).append(':')
                 .append(min ).append(" ").toString();
+         
+            //creating the am or pm 
          ampm = new StringBuilder().append(timeSet).toString();
 
-         eventView.timeButton.setText(time +" " + ampm);
+         eventView.timeButton.setText(time +" " + ampm);        //setting the timebutton with the selected time
     }
 
     public static String getTime(){
         return time;
     }
     public static String getAmPm(){return ampm;}
+    public static int getHour() {return hour;}
+    public static int getMin() {return min;}
 
     public static boolean isTimeSelected(){
         return selectedTime;
-    }
+    }       //return isTimeSelected
 }
-
