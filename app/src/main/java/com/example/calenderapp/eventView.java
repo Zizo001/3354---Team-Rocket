@@ -4,9 +4,11 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +29,7 @@ public class eventView extends AppCompatActivity{
     static Button timeButton;           //timebutton to show time picker
     static String event;                //holds event text
 
-            //this methods creates the time picker dialog
+        //this methods creates the time picker dialog
     public void showTimePickerDialog(View v) {
         DialogFragment newFragment = new TimePickerFragment();
         newFragment.show(getSupportFragmentManager(), "timePick");
@@ -85,11 +87,12 @@ public class eventView extends AppCompatActivity{
             public void onClick(View view) {
                 MainActivity.event = eventText.getText().toString();
                 event = eventText.getText().toString();
-                Intent intent = new Intent(eventView.this, AlarmReceiver.class);
-                int id = (int)System.currentTimeMillis();
-                final PendingIntent pendingIntent = PendingIntent.getBroadcast(eventView.this, id, intent, 0);
-                id++;
+
+                int alaramId = (int)System.currentTimeMillis();
+                final Intent intent = new Intent(eventView.this, AlarmReceiver.class);
+                final PendingIntent pendingIntent = PendingIntent.getBroadcast(eventView.this, alaramId, intent, 0);
                 final AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+
 
                     //if no event description then error
                 if(eventText.getText().toString().equals("")){
@@ -113,10 +116,12 @@ public class eventView extends AppCompatActivity{
                             toast.show();
                         } //else set alaram and insert into the database
                         else {
-                            int hour = TimePickerFragment.getHour();
+                            int hour = TimePickerFragment.get12Hr();
                             int minute = TimePickerFragment.getMin();
+                            String ampm = TimePickerFragment.getAmPm();
 
                             Calendar c = Calendar.getInstance();
+                            c.setTimeInMillis(System.currentTimeMillis());
                             c.set(Calendar.YEAR, MainActivity.getYear());
                             c.set(Calendar.MONTH, MainActivity.getMonth());
                             c.set(Calendar.DAY_OF_MONTH, MainActivity.getDay());
@@ -124,10 +129,9 @@ public class eventView extends AppCompatActivity{
                             c.set(Calendar.MINUTE, minute);
                             c.set(Calendar.SECOND, 0);
 
-                            long current = System.currentTimeMillis();
                             long alarmTime = c.getTimeInMillis();
 
-                            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime-(43200000), pendingIntent);
+                            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime, pendingIntent);
                             Toast.makeText(getApplicationContext(), "Done!", Toast.LENGTH_SHORT).show();
 
                             helper.insertData();
@@ -148,10 +152,11 @@ public class eventView extends AppCompatActivity{
 
     }
 
+        //creating notification channel
     private void createNotificationChannel(){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            CharSequence name = "LemubitReminderChannel";
-            String description = "Channel for Lemubit Reminder";
+            CharSequence name = "MyCalendar";
+            String description = "Channel for Event Reminder";
             int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel channel = new NotificationChannel("myCalendar", name, importance);
             channel.setDescription(description);
@@ -160,9 +165,4 @@ public class eventView extends AppCompatActivity{
             notificationManager.createNotificationChannel(channel);
         }
     }
-
-    public static String getEvent(){
-        return event;
-    }
-
 }
