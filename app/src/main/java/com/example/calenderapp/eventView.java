@@ -3,6 +3,7 @@ import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -18,9 +19,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.DialogFragment;
 import java.util.Calendar;
+import java.util.TimeZone;
 
 
-    //EventView class used to get user event and time
+//EventView class used to get user event and time
 public class eventView extends AppCompatActivity{
     Button addEvent;                    //button for addEvent
     private EditText eventText;         //edittext for user to enter event description
@@ -28,7 +30,8 @@ public class eventView extends AppCompatActivity{
     Button backBack;                    //backbutton to go back instead of adding an event
     static Button timeButton;           //timebutton to show time picker
     static String event;                //holds event text
-
+    static eventView eventInstance;
+    static boolean deleteStatus;
         //this methods creates the time picker dialog
     public void showTimePickerDialog(View v) {
         DialogFragment newFragment = new TimePickerFragment();
@@ -45,9 +48,13 @@ public class eventView extends AppCompatActivity{
         else setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
 
+        eventInstance = this;
+
         setContentView(R.layout.event_view);        //running the eventView xml
 
-        createNotificationChannel();                //call the createnotificationchannel method
+        if(deleteStatus){removeReminder(helper.getRemoveId());}
+
+        createNotificationChannel();
 
         helper = new myDBAdapter(this);     //new object for database helper
 
@@ -65,6 +72,11 @@ public class eventView extends AppCompatActivity{
         if(textStyle.equals("Italic")) {
             eventText.setTypeface(eventText.getTypeface(),Typeface.ITALIC);
         }
+
+        int alaramId = helper.getAlaramId()+1;
+        final Intent intent = new Intent(eventView.this, AlarmReceiver.class);
+        final PendingIntent pendingIntent = PendingIntent.getBroadcast(eventView.this, alaramId, intent, 0);
+        final AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
 
 
         timeButton = (Button)findViewById(R.id.button2);        //creating the time button
@@ -87,11 +99,6 @@ public class eventView extends AppCompatActivity{
             public void onClick(View view) {
                 MainActivity.event = eventText.getText().toString();
                 event = eventText.getText().toString();
-
-                int alaramId = (int)System.currentTimeMillis();
-                final Intent intent = new Intent(eventView.this, AlarmReceiver.class);
-                final PendingIntent pendingIntent = PendingIntent.getBroadcast(eventView.this, alaramId, intent, 0);
-                final AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
 
 
                     //if no event description then error
@@ -116,16 +123,15 @@ public class eventView extends AppCompatActivity{
                             toast.show();
                         } //else set alaram and insert into the database
                         else {
-                            int hour = TimePickerFragment.get12Hr();
+                            int hour = TimePickerFragment.getHour();
                             int minute = TimePickerFragment.getMin();
-                            String ampm = TimePickerFragment.getAmPm();
 
                             Calendar c = Calendar.getInstance();
                             c.setTimeInMillis(System.currentTimeMillis());
                             c.set(Calendar.YEAR, MainActivity.getYear());
                             c.set(Calendar.MONTH, MainActivity.getMonth());
                             c.set(Calendar.DAY_OF_MONTH, MainActivity.getDay());
-                            c.set(Calendar.HOUR, hour);
+                            c.set(Calendar.HOUR_OF_DAY, hour);
                             c.set(Calendar.MINUTE, minute);
                             c.set(Calendar.SECOND, 0);
 
@@ -148,21 +154,38 @@ public class eventView extends AppCompatActivity{
                 }
             }
         });
-
-
     }
+            //method to remove a reminder when deleting an event
+        public void removeReminder (int alaramId){
+            final Intent intent = new Intent(eventView.this, AlarmReceiver.class);
+            final PendingIntent pendingIntent = PendingIntent.getBroadcast(eventView.this, alaramId, intent, 0);
+            final AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+            //check to see if the alaram is already exist
+            boolean alaramStatus = (PendingIntent.getBroadcast(eventView.this, alaramId, intent, PendingIntent.FLAG_NO_CREATE) != null);
+
+                //if it does then disable it since we're deleting the event
+            if(alaramStatus) {
+                alarmManager.cancel(pendingIntent);
+            }
+        }
 
         //creating notification channel
-    private void createNotificationChannel(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            CharSequence name = "MyCalendar";
-            String description = "Channel for Event Reminder";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel("myCalendar", name, importance);
-            channel.setDescription(description);
+        private void createNotificationChannel(){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                CharSequence name = "MyCalendar";
+                String description = "Channel for Event Reminder";
+                int importance = NotificationManager.IMPORTANCE_HIGH;
+                NotificationChannel channel = new NotificationChannel("myCalendar", name, importance);
+                channel.setDescription(description);
 
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
+                NotificationManager notificationManager = getSystemService(NotificationManager.class);
+                notificationManager.createNotificationChannel(channel);
+            }
         }
+
+        public static eventView getInstance(){
+            return eventInstance;
+        }
+
+
     }
-}
