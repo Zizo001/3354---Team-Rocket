@@ -11,21 +11,26 @@ Functional	requirements
   1.3 The system shall allow users to add reminders to individual days
   1.4 The system shall allow users to add more than one event to a date
   1.5 The system shall allow users to change the present date
-  1.6 The system shall allow the uer to have an overview of the year
+  1.6 The system shall allow user to pick time and date for each event.
+  1.7 The system shall not allow time overlapping for that specific date.
+  1.7 The system shall not allow event to be created without time and description. 
+  
 2.  The Calender app shall have a notification system
-  2.1 The user shall be able to enable/disable notification system
-  2.2 The user shall be able to get notification 30 mins before the scheduled event is about to occur.
+  2.1 The user shall be able to reviece notification when the event time has occured.
+  2.2 The user shall be able to remove notification upon removing the event.
   2.3 The user shall be able to edit the notification that already exist (time, date).
+  
 3. The Calendar app shall have a data storage system
   3.1 The app shall store and retrieve all information saved on the calendar.
   3.2 The app shall be able to update real time using the database.
   3.3 The app will save data to the phone itself.
+  3.4 The app shall be able to add and remove event from database upon user request. 
+  
 Non-Functional 
 1.Customizability
  1.1 The app shall have a built in dark mode.
- 1.2 The app shall have feature that allows different colors for each event. 
- 1.3 The app shall allow user to set certain time for the reminder. 
- 1.4 The app shall allow user to set snooze time for notifications.
+ 1.2 The app shall have different font style setting.
+
 
 
 Use	Case	Diagram
