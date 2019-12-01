@@ -1,3 +1,46 @@
 (i) Design pattern used and the corresponding code location
+    Factory Pattern: The theme of the app changes based on the user picked settings. 
+    
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+        {
+            setTheme(R.style.DarkTheme);
+        }
+        else setTheme(R.style.AppTheme);
+    
+    /////////////////////////////////////////////////////////////////////////////////////////
+        if(textStyle.equals("Bold")) {
+            eventText.setTypeface(eventText.getTypeface(), Typeface.BOLD);
+        }
+        if(textStyle.equals("Regular")) {
+            eventText.setTypeface(eventText.getTypeface(),Typeface.NORMAL);
+        }
+        if(textStyle.equals("Italic")) {
+            eventText.setTypeface(eventText.getTypeface(),Typeface.ITALIC);
+        }
+
+    
+    Creational Pattern: Creating an object that helps access the database.
+    
+            helper = new myDBAdapter(this);     //new database helper object
+    
+    Behavioral Pattern- Each Android Activity contains this onCreate methods, however it is used in it own way.
+    
+      protected void onCreate(Bundle savedInstanceState) {.....................}
+
+    Visitor Pattern: The class is implement the onClickListener, but will be defined based on its own use within the class. So it does not have to be the same as in another class.
+
+          //dayView class used to view all the events for a selected Date
+      public class dayView extends AppCompatActivity implements View.OnClickListener {.........}
+      
+          @Override
+      public void onClick(View view) {
+        Intent i = new Intent(dayView.this, eventView.class);   //going from dayView to eventView
+        startActivity(i);
+      }
+
+    Singleton Pattern: The Calendar is a class and only one instance of that class is being created. 
+    
+        calender = (CalendarView) findViewById(R.id.calender);
+
 (ii) The location of at least five test classes (developed by each member) that contain unit test cases for four non-trivial methods
 (iii)  The instructions to build and use the software, including the implemented functionalities.
