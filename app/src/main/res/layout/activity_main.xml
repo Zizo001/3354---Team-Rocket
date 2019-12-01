@@ -49,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginBottom="10dp"
+            android:backgroundTint="#EB2020"
             android:drawableLeft="@android:drawable/ic_menu_sort_by_size"
             android:text="Setting" />
 
@@ -59,6 +60,7 @@
             android:layout_marginLeft="60dp"
             android:layout_marginRight="40dp"
             android:layout_toRightOf="@id/settingButton"
+            android:backgroundTint="#3FB4EE"
             android:drawableLeft="@android:drawable/ic_menu_day"
             android:text="Year View" />
     </RelativeLayout>
