@@ -27,10 +27,10 @@ public class setting extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = new SharedPref(this);
-
+        Button goBack = (Button)findViewById(R.id.goback);
 
         // Set the theme
-        if(sharedPref.loadNightModeState() == true)
+        if(sharedPref.loadNightModeState() ==true)
         {
             switchStat = true;
             setTheme(R.style.DarkTheme);
@@ -51,7 +51,6 @@ public class setting extends AppCompatActivity implements View.OnClickListener {
             switchStat = true;
             myswitch.setChecked(true);
         }
-
         myswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -64,15 +63,6 @@ public class setting extends AppCompatActivity implements View.OnClickListener {
                     sharedPref.setNightModeState(false);
                     restartApp();
                 }
-            }
-        });
-
-        //Activate goBack button
-        Button goBack = (Button)findViewById(R.id.goback);
-        goBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
             }
         });
 
@@ -96,7 +86,6 @@ public class setting extends AppCompatActivity implements View.OnClickListener {
         toast.show();
     }
 
-    /** This method return the textStyle */
     public static String getTextStyle(){
         return textStyle;
     }
