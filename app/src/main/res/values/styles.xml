@@ -29,7 +29,7 @@
         <item name="textcolor">#ffffff</item>
         <item name="tintcolor">#ffffff</item>
         <item name="buttoncolor">#2196f3</item>
-        <item name="calenderBackground">#212121</item>
+        <item name="calenderBackground">#726969</item>
         <item name="calenderText">#ffffff</item>
         <item name="android:windowAnimationStyle">@style/windowAnimationTransition
         </item>
