@@ -1,4 +1,4 @@
-package com.example.setting;
+package com.example.calenderapp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
