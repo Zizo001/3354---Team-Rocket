@@ -117,6 +117,22 @@ public class eventView extends AppCompatActivity{
                 if(TimePickerFragment.isTimeSelected()) {
                     //if event already exists then just update with new event description for that textview
                     if(dayView.getExists()){
+                            int hour = TimePickerFragment.getHour();
+                            int minute = TimePickerFragment.getMin();
+
+                            Calendar c = Calendar.getInstance();
+                            c.setTimeInMillis(System.currentTimeMillis());
+                            c.set(Calendar.YEAR, MainActivity.getYear());
+                            c.set(Calendar.MONTH, MainActivity.getMonth());
+                            c.set(Calendar.DAY_OF_MONTH, MainActivity.getDay());
+                            c.set(Calendar.HOUR_OF_DAY, hour);
+                            c.set(Calendar.MINUTE, minute);
+                            c.set(Calendar.SECOND, 0);
+
+                            long alarmTime = c.getTimeInMillis();
+
+                            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime, pendingIntent);
+                            Toast.makeText(getApplicationContext(), "Done!", Toast.LENGTH_SHORT).show();
                         helper.updateEvent(dayView.getBoxId(), eventText.getText().toString(), TimePickerFragment.getTime(), TimePickerFragment.getAmPm());
                         Intent i = new Intent(eventView.this, dayView.class);
                         startActivity(i);
