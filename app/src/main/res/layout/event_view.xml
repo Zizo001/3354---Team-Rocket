@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="bottom"
     android:background="#03A9F4"
-    android:backgroundTint="#DF0000"
+    android:backgroundTint="?attr/cardbackground"
     android:gravity="bottom"
     android:orientation="vertical">
 
@@ -15,16 +15,14 @@
         android:layout_height="72dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="#2196F3"
-        android:backgroundTint="#FFFFFF"
+        android:background="?attr/cardbackground"
         android:ems="10"
         android:fontFamily="@font/chewy"
         android:hint="Event Description"
         android:inputType="textEmailAddress"
-        android:shadowColor="#639EEE"
         android:singleLine="false"
         android:textAlignment="center"
-        android:textColorHint="#6B6161"
+        android:textColor="?attr/textcolor"
         android:textSize="30sp" />
 
     <Button
@@ -60,7 +58,7 @@
                 android:layout_marginLeft="20dp"
                 android:backgroundTint="#03A9F4"
                 android:drawableLeft="@android:drawable/ic_menu_agenda"
-                android:fontFamily="@font/boogaloo"
+                android:fontFamily="@font/chewy"
                 android:gravity="center"
                 android:shadowColor="#FFFFFF"
                 android:text="Go Back"
@@ -76,7 +74,7 @@
                 android:layout_toRightOf="@id/button4"
                 android:backgroundTint="#F44336"
                 android:drawableLeft="@android:drawable/ic_menu_add"
-                android:fontFamily="@font/boogaloo"
+                android:fontFamily="@font/chewy"
                 android:gravity="center"
                 android:text="Add Event"
                 android:textAlignment="center"
