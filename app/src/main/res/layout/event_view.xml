@@ -23,6 +23,7 @@
         android:singleLine="false"
         android:textAlignment="center"
         android:textColor="?attr/textcolor"
+        android:textColorHint="#FF0000"
         android:textSize="30sp" />
 
     <Button
