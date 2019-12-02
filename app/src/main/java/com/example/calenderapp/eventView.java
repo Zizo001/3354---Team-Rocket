@@ -32,20 +32,26 @@ public class eventView extends AppCompatActivity{
     static String event;                //holds event text
     static eventView eventInstance;
     static boolean deleteStatus;
-        //this methods creates the time picker dialog
+    SharedPref sharedPref;
+    //this methods creates the time picker dialog
     public void showTimePickerDialog(View v) {
         DialogFragment newFragment = new TimePickerFragment();
         newFragment.show(getSupportFragmentManager(), "timePick");
     }
 
-        //onCreate method
+    //onCreate method
     protected void onCreate(Bundle savedInstanceState) {
-            //checking to see what the last theme was and setting it as the current
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+        //checking to see what the last theme was and setting it as the current
+        sharedPref = new SharedPref(this);//creating an instance of sharedPref class
+
+        //if the night mode is on
+        if(sharedPref.loadNightModeState() == true)
         {
+            //set the calender application to dark theme
             setTheme(R.style.DarkTheme);
         }
-        else setTheme(R.style.AppTheme);
+        else setTheme(R.style.AppTheme);//if not, set the calender application to app theme
+
         super.onCreate(savedInstanceState);
 
         eventInstance = this;
@@ -62,7 +68,7 @@ public class eventView extends AppCompatActivity{
 
         eventText = (EditText) findViewById(R.id.eventText);    //event edittext
 
-            //checking for the font style and setting current style to it
+        //checking for the font style and setting current style to it
         if(textStyle.equals("Bold")) {
             eventText.setTypeface(eventText.getTypeface(), Typeface.BOLD);
         }
@@ -82,7 +88,7 @@ public class eventView extends AppCompatActivity{
         timeButton = (Button)findViewById(R.id.button2);        //creating the time button
         backBack = (Button) findViewById(R.id.button4);         //creating the back button
 
-            //on clik the back button go back to the dayView
+        //on clik the back button go back to the dayView
         backBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +99,7 @@ public class eventView extends AppCompatActivity{
 
 
         addEvent = (Button) findViewById(R.id.addBut);      //creating the addEvent button
-            //on click the addEvent button set alaram and insert into the database
+        //on click the addEvent button set alaram and insert into the database
         addEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,22 +107,22 @@ public class eventView extends AppCompatActivity{
                 event = eventText.getText().toString();
 
 
-                    //if no event description then error
+                //if no event description then error
                 if(eventText.getText().toString().equals("")){
                     Toast toast = Toast.makeText(getApplicationContext(), "Need to add Event description!!", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                 }
-                    //if time is selected
+                //if time is selected
                 if(TimePickerFragment.isTimeSelected()) {
-                        //if event already exists then just update with new event description for that textview
+                    //if event already exists then just update with new event description for that textview
                     if(dayView.getExists()){
                         helper.updateEvent(dayView.getBoxId(), eventText.getText().toString(), TimePickerFragment.getTime(), TimePickerFragment.getAmPm());
                         Intent i = new Intent(eventView.this, dayView.class);
                         startActivity(i);
                     }//else check to see time overrlap
                     else {
-                            //if time overrlap then error
+                        //if time overrlap then error
                         if (helper.checkTimeOverlap(TimePickerFragment.getTime(), TimePickerFragment.getAmPm())) {
                             Toast toast = Toast.makeText(getApplicationContext(), "Time Overlap!! Select Different Time!!", Toast.LENGTH_SHORT);
                             toast.setGravity(Gravity.CENTER, 0, 0);
@@ -155,37 +161,37 @@ public class eventView extends AppCompatActivity{
             }
         });
     }
-            //method to remove a reminder when deleting an event
-        public void removeReminder (int alaramId){
-            final Intent intent = new Intent(eventView.this, AlarmReceiver.class);
-            final PendingIntent pendingIntent = PendingIntent.getBroadcast(eventView.this, alaramId, intent, 0);
-            final AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-            //check to see if the alaram is already exist
-            boolean alaramStatus = (PendingIntent.getBroadcast(eventView.this, alaramId, intent, PendingIntent.FLAG_NO_CREATE) != null);
+    //method to remove a reminder when deleting an event
+    public void removeReminder (int alaramId){
+        final Intent intent = new Intent(eventView.this, AlarmReceiver.class);
+        final PendingIntent pendingIntent = PendingIntent.getBroadcast(eventView.this, alaramId, intent, 0);
+        final AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        //check to see if the alaram is already exist
+        boolean alaramStatus = (PendingIntent.getBroadcast(eventView.this, alaramId, intent, PendingIntent.FLAG_NO_CREATE) != null);
 
-                //if it does then disable it since we're deleting the event
-            if(alaramStatus) {
-                alarmManager.cancel(pendingIntent);
-            }
+        //if it does then disable it since we're deleting the event
+        if(alaramStatus) {
+            alarmManager.cancel(pendingIntent);
         }
-
-        //creating notification channel
-        private void createNotificationChannel(){
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-                CharSequence name = "MyCalendar";
-                String description = "Channel for Event Reminder";
-                int importance = NotificationManager.IMPORTANCE_HIGH;
-                NotificationChannel channel = new NotificationChannel("myCalendar", name, importance);
-                channel.setDescription(description);
-
-                NotificationManager notificationManager = getSystemService(NotificationManager.class);
-                notificationManager.createNotificationChannel(channel);
-            }
-        }
-
-        public static eventView getInstance(){
-            return eventInstance;
-        }
-
-
     }
+
+    //creating notification channel
+    private void createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name = "MyCalendar";
+            String description = "Channel for Event Reminder";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("myCalendar", name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    public static eventView getInstance(){
+        return eventInstance;
+    }
+
+
+}
