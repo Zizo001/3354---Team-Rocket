@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="bottom"
-    android:background="#03A9F4"
-    android:backgroundTint="?attr/cardbackground"
+    android:background="?attr/cardbackground"
     android:gravity="bottom"
     android:orientation="vertical">
 
@@ -20,6 +19,7 @@
         android:fontFamily="@font/chewy"
         android:hint="Event Description"
         android:inputType="textEmailAddress"
+        android:shadowColor="#243142"
         android:singleLine="false"
         android:textAlignment="center"
         android:textColor="?attr/textcolor"
