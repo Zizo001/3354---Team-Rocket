@@ -24,14 +24,20 @@ public class dayView extends AppCompatActivity implements View.OnClickListener {
     LinearLayout container;                 //linearLayout to hold all the textviews
     public static boolean exists;           //exists check
     public static int boxid;                //boxid
+    SharedPref sharedPref;
 
     protected void onCreate(Bundle savedInstanceState) {
-            //checking for last set theme and setting it as the current theme
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+        sharedPref = new SharedPref(this);//creating an instance of sharedPref class
+
+        //if the night mode is on
+        if(sharedPref.loadNightModeState() == true)
         {
+            //set the calender application to dark theme
             setTheme(R.style.DarkTheme);
         }
-        else setTheme(R.style.AppTheme);
+        else setTheme(R.style.AppTheme);//if not, set the calender application to app theme
+
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.day_view);  //setting up the view
@@ -44,9 +50,9 @@ public class dayView extends AppCompatActivity implements View.OnClickListener {
         addButton.setSize(FloatingActionButton.SIZE_AUTO);
         addButton.setOnClickListener(this);
 
-       FloatingActionButton homeButton = findViewById(R.id.homeButton);      //adding floating button for home
+        FloatingActionButton homeButton = findViewById(R.id.homeButton);      //adding floating button for home
         homeButton.setSize(FloatingActionButton.SIZE_AUTO);
-            //on click home button go to MainActivity
+        //on click home button go to MainActivity
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,7 +68,7 @@ public class dayView extends AppCompatActivity implements View.OnClickListener {
 
         dateBox = (TextView) findViewById(R.id.textView);      //create the datebox
 
-            //setting the font sytle
+        //setting the font sytle
         if(textStyle.equals("Bold")) {
             dateBox.setTypeface(dateBox.getTypeface(),Typeface.BOLD);
         }
@@ -77,22 +83,22 @@ public class dayView extends AppCompatActivity implements View.OnClickListener {
         List<String> event = helper.getData(selectedDate);      //getting the events by reading the database
         List<Integer> ids = helper.getIds();                    //getting the ids
 
-            //adding a new line using event and id
-       for(String e : event){
+        //adding a new line using event and id
+        for(String e : event){
             int i = ids.get(event.indexOf(e));
             addLine(e, i);
         }
 
     }
 
-        //for each event add a textView with the event description and add a done button and set it to the id
+    //for each event add a textView with the event description and add a done button and set it to the id
     public void addLine(final String e, final int uid){
         String textStyle = setting.getTextStyle();
         LayoutInflater layoutInflater = (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View addView = layoutInflater.inflate(R.layout.row, null);
         final AutoCompleteTextView tv = (AutoCompleteTextView)addView.findViewById(R.id.textout);
         tv.setText(" " + e);
-            //setting the font style
+        //setting the font style
         if(textStyle.equals("Bold")) {
             tv.setTypeface(tv.getTypeface(),Typeface.BOLD);
         }
@@ -110,18 +116,18 @@ public class dayView extends AppCompatActivity implements View.OnClickListener {
         removeButton.setId(uid);
         exists = false;
 
-            //listens for user touch on the eventBox to call eventView for updating an event
+        //listens for user touch on the eventBox to call eventView for updating an event
         final View.OnClickListener thisListener1 = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setBoxId(tv.getId());
                 setExists(true);
-               Intent i = new Intent(dayView.this, eventView.class);
-               startActivity(i);
+                Intent i = new Intent(dayView.this, eventView.class);
+                startActivity(i);
             }
         };
 
-            //listens for user touch on the done button to remove the event from database and dayView
+        //listens for user touch on the done button to remove the event from database and dayView
         final View.OnClickListener thisListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,22 +142,22 @@ public class dayView extends AppCompatActivity implements View.OnClickListener {
         container.addView(addView);
     }
 
-        //method to set if event exists
+    //method to set if event exists
     public void setExists(boolean e){
         exists = e;
     }
 
-        //returns event exists
+    //returns event exists
     public static boolean getExists(){
         return exists;
     }
 
-        //set box id
+    //set box id
     public void setBoxId(int i){
         boxid = i;
     }
 
-        //getBox id
+    //getBox id
     public static int getBoxId(){
         return boxid;
     }
@@ -165,4 +171,3 @@ public class dayView extends AppCompatActivity implements View.OnClickListener {
     }
 
 }
-
