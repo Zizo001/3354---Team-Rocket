@@ -28,17 +28,17 @@
         <item name="cardbackground">#424242</item>
         <item name="textcolor">#ffffff</item>
         <item name="tintcolor">#ffffff</item>
-        <item name="buttoncolor">#2196f3</item>
+        <item name="buttoncolor">#1C4363</item>
         <item name="calenderBackground">#726969</item>
         <item name="calenderText">#ffffff</item>
         <item name="android:windowAnimationStyle">@style/windowAnimationTransition
         </item>
 
     </style>
-<style name="windowAnimationTransition">
-    <item name="android:windowEnterAnimation" >@android:anim/fade_in</item>
-    <item name="android:windowExitAnimation">@android:anim/fade_out</item>
-</style>
+    <style name="windowAnimationTransition">
+        <item name="android:windowEnterAnimation" >@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
 
 
 
