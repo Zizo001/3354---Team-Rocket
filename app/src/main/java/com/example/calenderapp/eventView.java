@@ -112,7 +112,7 @@ public class eventView extends AppCompatActivity{
                     Toast toast = Toast.makeText(getApplicationContext(), "Need to add Event description!!", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
-                }
+                }else{
                 //if time is selected
                 if(TimePickerFragment.isTimeSelected()) {
                     //if event already exists then just update with new event description for that textview
@@ -158,6 +158,7 @@ public class eventView extends AppCompatActivity{
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                 }
+            }
             }
         });
     }
