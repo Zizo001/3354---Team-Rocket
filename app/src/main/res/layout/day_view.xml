@@ -24,7 +24,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="455dp"
+        android:layout_height="469dp"
         android:background="#F44336"
         android:backgroundTint="#FFFFFF">
 
@@ -46,7 +46,9 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="72dp">
+            android:layout_height="78dp"
+            android:background="#FFEB3B"
+            android:backgroundTint="#6D6969">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/addButton"
@@ -57,9 +59,12 @@
                 android:layout_marginRight="100dp"
                 android:clickable="true"
                 android:focusable="auto"
+                android:foregroundGravity="center"
                 android:foregroundTint="#F5F5F5"
                 android:onClick="onClick"
-                app:backgroundTint="#EE0A19"
+                android:outlineAmbientShadowColor="#FFFFFF"
+                app:backgroundTint="#F44336"
+                app:maxImageSize="50dp"
                 app:rippleColor="#3454C7"
                 app:srcCompat="@android:drawable/ic_menu_add" />
 
@@ -71,7 +76,8 @@
                 android:layout_centerInParent="true"
                 android:layout_marginLeft="100dp"
                 android:clickable="true"
-                app:backgroundTint="#3FB4EE"
+                app:backgroundTint="#03A9F4"
+                app:maxImageSize="50dp"
                 app:srcCompat="@android:drawable/ic_menu_today" />
         </RelativeLayout>
 
