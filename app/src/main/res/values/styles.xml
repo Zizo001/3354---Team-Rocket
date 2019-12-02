@@ -10,7 +10,7 @@
         <item name="backgroundColor">#fcfcfc</item>
         <item name="cardbackground">#ffffff</item>
         <item name="calenderBackground">#ffffff</item>
-        <item name="textcolor">#808080</item>
+        <item name="textcolor">#212121</item>
         <item name="tintcolor">#ffffff</item>
         <item name="buttoncolor">#2196F3</item>
         <item name="android:windowAnimationStyle">@style/windowAnimationTransition
