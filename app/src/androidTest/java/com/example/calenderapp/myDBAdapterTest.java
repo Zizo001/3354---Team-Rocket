@@ -1,55 +1,34 @@
 package com.example.calenderapp;
 
-import org.junit.Assert;
+import android.provider.CalendarContract;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import org.junit.Test;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.sql.Time;
+
 import static org.junit.Assert.*;
 
-public class myDBAdapterTest {
+public class myDBAdapterTest extends AppCompatActivity {
 
     @Test
-    public void getData() {
-        List<String> testList = new ArrayList();
-        testList.add("String 1");
-        String s = "String 1";
-        List<String> list = new ArrayList<>();
-        list.add(s);
-        assertEquals(list, testList );        //Aksharkumar
+    public void getIds(){
+        myDBAdapter helper = new myDBAdapter(this);
+        assertEquals(helper.getIds(), helper.ids);
     }
 
-     @Test
-    public void checkTimeOverlap() {
-        String dbDate = "10/20/2019";
-        String dbAMPM = "AM";
-        String dbTime = "2:30";
+    @Test
+    public void getAlaramIds() {
+        myDBAdapter.setAlaramId(15);
+        assertEquals(15, myDBAdapter.getAlaramId());
+    }
 
-        String date = "10/20/2019";
-        String ampm = "AM";
-        String time = "2:30";
-
-        String finalTime = dbTime + dbAMPM;
-        String finalTime2 = time + ampm;
-
-        boolean result = finalTime.equals(finalTime2);
-        assertEquals(true, result);
-    }//Veerendranath Korrapati
 
     @Test
-    public void checkTimeOverlapFalse() {
-        String dbDate = "10/20/2019";
-        String dbAMPM = "PM";
-        String dbTime = "2:30";
+    public void setRemoveId() {
+        myDBAdapter.setRemoveId(10);
+        assertEquals(10, myDBAdapter.getRemoveId());
+    }
 
-        String date = "10/20/2019";
-        String ampm = "AM";
-        String time = "2:30";
-        
-        String finalTime = dbTime + dbAMPM;
-        String finalTime2 = time + ampm;
-
-        boolean result = finalTime.equals(finalTime2);
-        assertEquals(false, result);
-
-    }       //Charlotte
 }
