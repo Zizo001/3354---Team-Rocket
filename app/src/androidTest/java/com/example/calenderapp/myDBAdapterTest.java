@@ -31,6 +31,19 @@ public class myDBAdapterTest {
 
     @Test
     public void checkTimeOverlapFalse() {
-        Assert.assertFalse(false);
+        String dbDate = "10/20/2019";
+        String dbAMPM = "PM";
+        String dbTime = "2:30";
+
+        String date = "10/20/2019";
+        String ampm = "AM";
+        String time = "2:30";
+        
+        String finalTime = dbTime + dbAMPM;
+        String finalTime2 = time + ampm;
+
+        boolean result = finalTime.equals(finalTime2);
+        assertEquals(false, result);
+
     }       //Charlotte
 }
