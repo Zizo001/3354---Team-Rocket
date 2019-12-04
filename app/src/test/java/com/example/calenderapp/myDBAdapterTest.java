@@ -1,3 +1,4 @@
+//Veerendranath Korrapati
 package com.example.calenderapp;
 
 import org.junit.Assert;
@@ -16,7 +17,7 @@ public class myDBAdapterTest {
         String s = "String 1";
         List<String> list = new ArrayList<>();
         list.add(s);
-        assertEquals(list, testList );        //Aksharkumar
+        assertEquals(list, testList );       
     }
 
 
@@ -35,7 +36,7 @@ public class myDBAdapterTest {
 
         boolean result = finalTime.equals(finalTime2);
         assertEquals(true, result);
-    }//Veerendranath Korrapati
+    }
 
     @Test
     public void checkTimeOverlapFalse() {
@@ -53,5 +54,5 @@ public class myDBAdapterTest {
         boolean result = finalTime.equals(finalTime2);
         assertEquals(false, result);
 
-    }       //Charlotte
+    }      
 }
