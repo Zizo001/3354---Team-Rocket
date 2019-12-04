@@ -7,10 +7,16 @@ import static org.junit.Assert.*;
 
 public class myDBAdapterTest {
 
-    @Test
+  @Test
     public void getData() {
-        Assert.assertTrue(true);        //Aksharkumar
+        List<String> testList = new ArrayList();
+        testList.add("String 1");
+        String s = "String 1";
+        List<String> list = new ArrayList<>();
+        list.add(s);
+        assertEquals(list, testList );        //Aksharkumar
     }
+
 
      @Test
     public void checkTimeOverlap() {
