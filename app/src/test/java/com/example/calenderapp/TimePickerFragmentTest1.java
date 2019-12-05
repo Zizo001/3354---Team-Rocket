@@ -12,4 +12,9 @@ public class TimePickerFragmentTest1 {
         assertEquals(TimePickerFragment.selectedTime, TimePickerFragment.isTimeSelected());
 
     }
+    @Test
+    public void isTimeSelected1(){
+        TimePickerFragment.selectedTime = false;
+        assertEquals(TimePickerFragment.selectedTime, TimePickerFragment.isTimeSelected());
+    }
 }
