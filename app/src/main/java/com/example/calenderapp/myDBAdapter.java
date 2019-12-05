@@ -92,7 +92,7 @@ public class myDBAdapter extends AppCompatActivity {
         return events;
     }
 
-    public void setAlaramId(int aId) {
+    public static void setAlaramId(int aId) {
         alaramId = aId;
     }
 
